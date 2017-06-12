@@ -1,0 +1,25 @@
+grammar Math;
+
+start
+    : add EOF;
+
+add
+    :   Number '+' add 
+    |   Number
+    ;
+
+
+Number
+    :   [1-9][0-9]*
+    ;
+
+Whitespace
+    :   [ \t]+ -> skip;
+
+Newline
+    :   ('\r''\n'?|'\n') -> skip
+    ;
+
+LineComment
+    :   '//'~[\r\n]* -> skip
+    ;
